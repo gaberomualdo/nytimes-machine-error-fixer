@@ -1,0 +1,17 @@
+{
+  "name": "nyt-archived-spelling-fixer",
+  "version": "0.1.0",
+  "description": "Fixes a some errors I noticed in archived NY Times articles on their site.",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xtrp/nyt-archived-spelling-fixer.git"
+  },
+  "author": "Gabriel Romualdo <xtrp@xtrp.io>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/xtrp/nyt-archived-spelling-fixer/issues"
+  },
+  "homepage": "https://github.com/xtrp/nyt-archived-spelling-fixer#readme"
+}
