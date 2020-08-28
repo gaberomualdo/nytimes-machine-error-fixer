@@ -1,3 +1,4 @@
-example_article.json
-example_article.html
+dist/main.js
+src/js/exampleArticles.js
 .DS_Store
+node_modules

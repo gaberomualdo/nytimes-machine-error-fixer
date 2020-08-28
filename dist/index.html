@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NYT Transcription Fixes Example</title>
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <nav>
+      <div class="logo"><a href="/">NYT Transcription Fixes</a></div>
+      <ul>
+        <a href="#" class="on">Example Fixes From Famous Articles</a>
+      </ul>
+    </nav>
+
+    <main class="main">
+      <div class="container">
+        <p class="meta">Select an Article:</p>
+        <select class="select-article"></select>
+        <div class="row">
+          <div>
+            <h1>Original NY Times Article Transcription</h1>
+            <p></p>
+          </div>
+          <div>
+            <h1>Processed With My Program</h1>
+            <p>
+              <span></span>
+              <span>
+                <input type="checkbox" id="highlight" checked />
+                <label for="highlight">Highlight Fixes</label>
+              </span>
+            </p>
+          </div>
+        </div>
+        <div class="text-box highlighted">
+          <div class="paragraphs"></div>
+        </div>
+      </div>
+    </main>
+
+    <!-- scripts -->
+    <script src="main.js"></script>
+  </body>
+</html>

@@ -17,7 +17,7 @@ String.prototype.getCleanWordObj = function () {
   const endOfSentenceLetters = ['.'];
   for (let i = 0; i < endOfSentenceLetters.length; i++) {
     const letter = endOfSentenceLetters[i];
-    if (newWord.indexOf(letter) > -1) {
+    if (newWord.includes(letter)) {
       returnVal.endOfSentence = true;
       break;
     }
@@ -46,7 +46,7 @@ String.prototype.getCleanWordObj = function () {
 };
 
 // util variables
-const wordSeparators = [' ', '—', '-', '–', '‐'];
+const wordSeparators = [' ', '—', '–' /* , '-', '‐' */];
 
 // split text into words
 String.prototype.getWords = function () {
@@ -76,8 +76,8 @@ String.prototype.combineWordsAtIndices = function (combinationIndices) {
   const textLength = text.length;
   let curWordIdx = 0;
   let removedCount = 0;
-  let originalWordIndices = [];
-  let newWordIndices = [];
+  let originalWordIndices = []; // a list of start and end indices which combined words were originally
+  let newWordIndices = []; // a list of start and end indices which fixed words are now
 
   for (let i = 0; i < textLength; i++) {
     const idx = i - removedCount;
