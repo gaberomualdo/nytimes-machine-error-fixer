@@ -148,7 +148,6 @@ nav ul a.on {
 }
 
 .container .text-box {
-  flex-basis: 100%;
   flex-shrink: 1;
 
   border: 1px solid #ccc;

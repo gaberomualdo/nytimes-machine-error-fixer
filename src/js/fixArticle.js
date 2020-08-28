@@ -4,14 +4,31 @@ require('./textUtils');
 
 const fixExtraSpaces = require('./fixExtraSpaces');
 
-const fixArticle = (articleContent, paragraphCallback) => {
-  const delimiterFunc = (colorIdx) => {
-    const colors = '#27ae60,#3498db,#e67e22,#e74c3c,#8e44ad,#f39c12'.split(',');
-    return {
-      start: `<strong style="color: ${colors[colorIdx % colors.length]}">`,
-      end: '</strong>',
-    };
+// exported function to fix a given article with content and optional options
+const fixArticle = (articleContent, options = {}) => {
+  // options --> { delimiterFunction: Function, isAsync: boolean, paragraphCallback: Function }
+
+  let hasDelimiters = false;
+  let delimiterFunction = () => {
+    return { start: '', end: '' };
   };
+  if (options.delimiterFunction) {
+    hasDelimiters = true;
+    if (options.delimiterFunction === 'default') {
+      delimiterFunction = (colorIdx) => {
+        const colors = '#27ae60,#3498db,#e67e22,#e74c3c,#8e44ad,#f39c12'.split(',');
+        return {
+          start: `<strong style="color: ${colors[colorIdx % colors.length]}">`,
+          end: '</strong>',
+        };
+      };
+    } else {
+      delimiterFunction = options.delimiterFunction;
+    }
+  }
+
+  let isAsync = options.async;
+  let paragraphCallback = options.paragraphCallback || (() => {});
 
   articleContentParagraphs = articleContent
     .split('\n')
@@ -22,33 +39,63 @@ const fixArticle = (articleContent, paragraphCallback) => {
   let originalChangedWordsCount = 0;
   let fixedChangedWordsCount = 0;
 
+  let objToReturn = {
+    originalParagraphs: [],
+    fixedParagraphs: [],
+    originalText: '',
+    fixedText: '',
+  };
+
   const fixParagraph = (paragraphIdx) => {
     const paragraph = articleContentParagraphs[paragraphIdx];
     const { text, newWordIndices, originalWordIndices } = fixExtraSpaces(paragraph);
 
-    const original = addWordIndicies(paragraph, originalWordIndices, (useless) => {
-      originalChangedWordsCount++;
-      return delimiterFunc(originalChangedWordsCount);
-    });
-    const fixed = addWordIndicies(text, newWordIndices, (useless) => {
-      fixedChangedWordsCount++;
-      return delimiterFunc(fixedChangedWordsCount);
-    });
+    const original = hasDelimiters
+      ? addDelimiters(paragraph, originalWordIndices, () => {
+          originalChangedWordsCount++;
+          return delimiterFunction(originalChangedWordsCount);
+        })
+      : paragraph;
+    const fixed = hasDelimiters
+      ? addDelimiters(text, newWordIndices, () => {
+          fixedChangedWordsCount++;
+          return delimiterFunction(fixedChangedWordsCount);
+        })
+      : text;
 
     paragraphCallback(original, fixed);
 
     if (paragraphIdx + 1 < articleContentParagraphs.length) {
-      setTimeout(() => {
-        fixParagraph(paragraphIdx + 1);
-      }, 0);
+      if (isAsync) {
+        setTimeout(() => {
+          fixParagraph(paragraphIdx + 1);
+        }, 0);
+      } else {
+        // stack overflows may occur with text with many paragraphs
+        return { original, fixed };
+      }
     }
   };
 
-  fixParagraph(0);
+  if (isAsync) {
+    fixParagraph(0);
+  } else {
+    for (let i = 0; i < articleContentParagraphs.length; i++) {
+      const { original, fixed } = fixParagraph(i);
+      objToReturn.originalParagraphs.push(original);
+      objToReturn.fixedParagraphs.push(fixed);
+    }
+
+    objToReturn.fixedText = objToReturn.fixedParagraphs.join('\n\n');
+    objToReturn.originalText = objToReturn.originalParagraphs.join('\n\n');
+
+    return objToReturn;
+  }
 };
 
-const addWordIndicies = (text, wordIndicies, delimiters) => {
-  if (wordIndicies.length === 0) {
+// given an array of wordIndicies (word numbers of where there were changes made in given text), add delimiters (determined by a given function which takes in the current index in wordIndices)
+const addDelimiters = (text, wordIndices, delimiterFunction) => {
+  if (wordIndices.length === 0) {
     return text;
   }
 
@@ -60,14 +107,14 @@ const addWordIndicies = (text, wordIndicies, delimiters) => {
   for (let i = 0; i < text.length; i++) {
     const letter = text[i];
 
-    if (wordsDone < wordIndicies.length && wordIndicies[wordsDone].start === i) {
-      currentDelimiters = delimiters(wordsDone);
+    if (wordsDone < wordIndices.length && wordIndices[wordsDone].start === i) {
+      currentDelimiters = delimiterFunction(wordsDone);
       rVal += currentDelimiters.start;
     }
 
     rVal += letter;
 
-    if (wordsDone < wordIndicies.length && wordIndicies[wordsDone].end === i) {
+    if (wordsDone < wordIndices.length && wordIndices[wordsDone].end === i) {
       rVal += currentDelimiters.end;
       wordsDone += 1;
     }

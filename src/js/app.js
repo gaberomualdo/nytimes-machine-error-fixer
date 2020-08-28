@@ -1,8 +1,7 @@
 // from https://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
 const withCommas = (x) => x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
-const fixArticle = require('./fixArticle');
-const exampleArticles = require('./exampleArticles');
+const exampleArticles = require('./exampleArticlesWithFixes');
 
 const textBox = document.querySelector('.text-box');
 const textBoxParagraphs = document.querySelector('.text-box .paragraphs');
@@ -10,29 +9,29 @@ const textBoxParagraphs = document.querySelector('.text-box .paragraphs');
 const selectBox = document.querySelector('select.select-article');
 
 const updateArticle = () => {
-  const article = exampleArticles[selectBox.value];
+  const articleIdx = selectBox.value;
+  const article = exampleArticles[articleIdx];
 
   textBoxParagraphs.innerHTML = '';
 
   // meta for original article (link, word count, published date)
   (() => {
-    const wordCount = article.content.split(' ').length;
-    const published = article.date;
-    const link = article.url;
+    const meta = article.meta;
     const separator = '&nbsp;&nbsp;&bull;&nbsp;&nbsp;';
-    const metaHTML = `${withCommas(
-      wordCount
-    )} words${separator}${published}${separator}<a href='${link}' target='_blank' title='Article Link'>Original Article on NY Times</a>`;
+
+    const metaHTML = `${withCommas(meta.wordCount)} words${separator}${meta.published}${separator}<a href='${
+      meta.link
+    }' target='_blank' title='Article Link'>See Original Article on NY Times</a>`;
+
     document.querySelector('.container .row div:first-child p').innerHTML = metaHTML;
+
+    document.querySelector('.container .row div:last-child p span:first-child').innerText = `${withCommas(
+      article.fixedWords
+    )} Errors Identified and Fixed`;
   })();
 
-  let fixedWordsCount = 0;
-  fixArticle(article.content, (originalParagraphHTML, fixedParagraphHTML) => {
-    // update amount of words fixed
-    fixedWordsCount += (fixedParagraphHTML.match(/<\/strong>/g) || []).length;
-    document.querySelector('.container .row div:last-child p span:first-child').innerText = `${withCommas(
-      fixedWordsCount
-    )} Errors Identified and Fixed`;
+  article.original.forEach((originalParagraphHTML, paragraphIdx) => {
+    const fixedParagraphHTML = article.fixed[paragraphIdx];
 
     const row = document.createElement('div');
     row.classList.add('paragraph');

@@ -14,7 +14,7 @@ Handlebars.registerHelper('page', function (page, block) {
     about: 'About',
   };
 
-  const modMS = (filename) => fs.statSync('dist/main.css').mtime.getTime();
+  const modMS = (filename) => fs.statSync(filename).mtime.getTime();
 
   const isPage = (idx) => Object.keys(pages).indexOf(page) === idx;
 
