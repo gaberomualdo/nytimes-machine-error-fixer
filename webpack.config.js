@@ -36,6 +36,7 @@ Handlebars.registerHelper('page', function (page, block) {
       <link rel="stylesheet" href="${page}.css?v=${modMS('site/' + page + '.css')}" />
     </head>
     <body>
+      <div class='nav-placeholder'></div>
       <nav>
         <div class='inner'>
           <div class="logo"><a href="/">NY Times <span class="no-display-mobile">'70s</span> Transcription Fixes</a></div>
@@ -45,7 +46,7 @@ Handlebars.registerHelper('page', function (page, block) {
           </button>
           <div class="links">
             <a href="/" class="${isPage(0) ? 'on' : ''}">Example Fixes From Famous Articles</a>
-            <a href="tryit.html" class="${isPage(1) ? 'on' : ''}">Try it Yourself</a>
+            <a href="tryit.html" class="${isPage(1) ? 'on' : ''}">Try It Yourself</a>
             <a href="about.html" class="${isPage(2) ? 'on' : ''}">About</a>
           </div>
         </div>
