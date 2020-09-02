@@ -11,7 +11,17 @@ const textBox = document.querySelector('.container .text-box');
 const outputArea = document.querySelector('.container .text-box .right');
 const fixedCountElm = document.querySelector('.container .row div:last-child p span:first-child');
 
-document.querySelector('.container .text-box .left > .button-container button').addEventListener('click', () => {
+const fixArticleBtn = document.querySelector('.container .text-box .left > .button-container button');
+
+fixArticleBtn.addEventListener('click', () => {
+  fixArticleBtn.blur();
+
+  const toFix = textarea.value;
+
+  if (toFix.trim().length === 0) {
+    return;
+  }
+
   let fixedCount = 0;
   outputArea.innerHTML = '';
 
@@ -21,6 +31,7 @@ document.querySelector('.container .text-box .left > .button-container button').
     paragraphCallback: (original, fixed) => {
       const newParagraph = document.createElement('p');
       newParagraph.innerHTML = fixed;
+      console.log(fixed);
       fixedCount += Array.from(newParagraph.querySelectorAll('strong')).length;
       outputArea.appendChild(newParagraph);
 

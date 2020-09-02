@@ -1,3 +1,3 @@
 import { precacheAndRoute } from 'workbox-precaching';
 
-precacheAndRoute([{"revision":"d41d8cd98f00b204e9800998ecf8427e","url":"index.html"}]);
+precacheAndRoute([{"revision":"d41d8cd98f00b204e9800998ecf8427e","url":"about.css"},{"revision":"c7a752ad10c6cd51eab6b2692a63cd7a","url":"about.html"},{"revision":"d2d8c26334d006d78c442d40cf760f1c","url":"about.js"},{"revision":"81595c0bc2352dbe2729286da8e250b2","url":"global.css"},{"revision":"ca8f81dee2ad38f84f1bc7019c581514","url":"global.js"},{"revision":"167b1358399b4600c80518197476bebc","url":"index.css"},{"revision":"b4e5d8ecc86032c4874510af413243a6","url":"index.html"},{"revision":"a24b988271a6b24bc2e71c3885c0a877","url":"index.js"},{"revision":"0c619f50f5a2232f683f9fe551f09489","url":"service-worker.js"},{"revision":"977b77ef0f22f3da4209ff2bad96f2ec","url":"tryit.css"},{"revision":"8bb365a844a9cb557f8b3100e90d10f5","url":"tryit.html"}]);

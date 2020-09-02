@@ -77,6 +77,15 @@ Handlebars.registerHelper('page', function (page, block) {
         </script>
         `
       }
+
+      <!-- Service Worker (currently not added because of caching limits) -->
+      <script>
+      // if ('serviceWorker' in navigator) {
+      //   window.addEventListener('load', () => {
+      //     navigator.serviceWorker.register('service-worker.js')
+      //   });
+      // }
+      </script>
     </body>
   </html>`);
 });

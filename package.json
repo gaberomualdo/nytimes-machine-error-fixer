@@ -4,7 +4,8 @@
   "description": "Fixes a some errors I noticed in archived NY Times articles on their site.",
   "main": "index.js",
   "scripts": {
-    "build": "webpack"
+    "build": "webpack",
+    "build:sw": "workbox injectManifest workbox-config.js"
   },
   "repository": {
     "type": "git",

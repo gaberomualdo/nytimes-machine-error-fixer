@@ -30,7 +30,7 @@ nav {
   flex-shrink: 0;
   display: flex;
   justify-content: center;
-  padding: 1rem 0.5rem;
+  padding: 1rem 0.75rem;
 }
 nav .inner {
   box-sizing: border-box;
@@ -126,7 +126,7 @@ nav.mobile-links-open .mobile-link-toggle .open {
     height: 3.5rem;
   }
   nav {
-    padding: 0.5rem;
+    padding: 0.5rem 0.75rem;
   }
   nav .logo {
     font-size: 1.1rem;

@@ -129,8 +129,6 @@
 }
 .container .text-box .left > .button-container button {
   background-color: #28f;
-  color: #fff;
-  text-transform: uppercase;
   border-radius: 4px;
   border: none;
   height: 2.5rem;
@@ -142,10 +140,15 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   transition: box-shadow 0.25s, transform 0.25s;
   cursor: pointer;
-  letter-spacing: 0.05rem;
-  font-weight: 400;
+}
+.container .text-box .left > .button-container button,
+.container .text-box .left > .button-container button * {
   font-family: inherit;
+  letter-spacing: 0.05rem;
   font-size: 0.9rem;
+  color: #fff;
+  font-weight: 400;
+  text-transform: uppercase;
 }
 
 @media (hover: hover) and (pointer: fine) {

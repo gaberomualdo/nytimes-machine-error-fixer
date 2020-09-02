@@ -83,15 +83,15 @@ String.prototype.combineWordsAtIndices = function (combinationIndices) {
     const idx = i - removedCount;
     const letter = text[idx];
     if (wordSeparators.contains(letter)) {
+      if (combinationIndices.contains(curWordIdx - 1)) {
+        newWordIndices[newWordIndices.length - 1].end = idx;
+        originalWordIndices[originalWordIndices.length - 1].end = i;
+      }
       if (combinationIndices.contains(curWordIdx + 1)) {
         newWordIndices.push({});
         originalWordIndices.push({});
         newWordIndices[newWordIndices.length - 1].start = idx + 1;
         originalWordIndices[originalWordIndices.length - 1].start = i + 1;
-      }
-      if (combinationIndices.contains(curWordIdx - 1)) {
-        newWordIndices[newWordIndices.length - 1].end = idx;
-        originalWordIndices[originalWordIndices.length - 1].end = i;
       }
 
       if (combinationIndices.contains(curWordIdx)) {

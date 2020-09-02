@@ -107,14 +107,20 @@ const addDelimiters = (text, wordIndices, delimiterFunction) => {
   for (let i = 0; i < text.length; i++) {
     const letter = text[i];
 
-    if (wordsDone < wordIndices.length && wordIndices[wordsDone].start === i) {
+    const isStartIdx = wordsDone < wordIndices.length && wordIndices[wordsDone].start === i;
+    const isEndIdx = wordsDone < wordIndices.length && wordIndices[wordsDone].end === i;
+
+    // don't add anything if idx is both start and end
+    const isStartAndEndIdx = isStartIdx && isEndIdx;
+
+    if (!isStartAndEndIdx && isStartIdx) {
       currentDelimiters = delimiterFunction(wordsDone);
       rVal += currentDelimiters.start;
     }
 
     rVal += letter;
 
-    if (wordsDone < wordIndices.length && wordIndices[wordsDone].end === i) {
+    if (!isStartAndEndIdx && isEndIdx) {
       rVal += currentDelimiters.end;
       wordsDone += 1;
     }
