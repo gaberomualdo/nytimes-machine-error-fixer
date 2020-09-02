@@ -9,12 +9,18 @@ const Handlebars = require('handlebars');
 const handlebarsInput = {};
 Handlebars.registerHelper('page', function (page, block) {
   const pages = {
-    home: 'Example Fixes from Famous Articles',
+    index: 'Example Fixes from Famous Articles',
     tryit: 'Try it Yourself',
     about: 'About',
   };
 
-  const modMS = (filename) => fs.statSync(filename).mtime.getTime();
+  const modMS = (filepath) => {
+    try {
+      return fs.statSync(filepath).mtime.getTime();
+    } catch (err) {
+      return Math.floor(Math.random() * 10000);
+    }
+  };
 
   const isPage = (idx) => Object.keys(pages).indexOf(page) === idx;
 
@@ -23,18 +29,22 @@ Handlebars.registerHelper('page', function (page, block) {
   <html lang="en">
     <head>
       <meta charset="UTF-8" />
+      <meta name="description" content="An automated tool that fixes extra-space errors in transcribed New York Times articles from the early 1970s." />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>NY Times 70s Transcription Fixes &bull; ${pages[page]}</title>
-      <link rel="stylesheet" href="main.css?v=${modMS('dist/main.css')}" />
+      <link rel="stylesheet" href="global.css?v=${modMS('site/global.css')}" />
+      <link rel="stylesheet" href="${page}.css?v=${modMS('site/' + page + '.css')}" />
     </head>
     <body>
       <nav>
-        <div class="logo"><a href="/">NY Times 70s Transcription Fixes</a></div>
-        <ul>
-          <a href="/" class="${isPage(0) ? 'on' : ''}">Example Fixes From Famous Articles</a>
-          <a href="tryit.html" class="${isPage(1) ? 'on' : ''}">Try it Yourself</a>
-          <a href="about.html" class="${isPage(2) ? 'on' : ''}">About</a>
-        </ul>
+        <div class='inner'>
+          <div class="logo"><a href="/">NY Times '70s Transcription Fixes</a></div>
+          <div class="links">
+            <a href="/" class="${isPage(0) ? 'on' : ''}">Example Fixes From Famous Articles</a>
+            <a href="tryit.html" class="${isPage(1) ? 'on' : ''}">Try it Yourself</a>
+            <a href="about.html" class="${isPage(2) ? 'on' : ''}">About</a>
+          </div>
+        </div>
       </nav>
 
       <main class='main'>
@@ -44,17 +54,35 @@ Handlebars.registerHelper('page', function (page, block) {
       </main>
 
       <!-- scripts -->
-      <script src="main.js?v=${modMS('dist/main.js')}"></script>
+      ${
+        // tryit page loads script dynamically
+        page !== 'tryit'
+          ? `<script src="${page}.js?v=${modMS('site/' + page + '.js')}"></script>`
+          : `
+        <script>
+          window.addEventListener('load', () => {
+            const script = document.createElement('script');
+            script.onload = () => {
+              document.querySelector('.container .text-box').classList.add('loaded');
+            };
+            script.src = '${page}.js?v=${modMS('site/' + page + '.js')}';
+
+            document.head.appendChild(script);
+          });
+        </script>
+        `
+      }
     </body>
   </html>`);
 });
 
-module.exports = [
-  {
-    entry: './src/index.js',
+const createJSFileConfig = (filename) => {
+  const filenameNoExt = filename.split('.')[0];
+  return {
+    entry: './src/' + filename,
     output: {
-      filename: 'main.js',
-      path: path.resolve(__dirname, 'dist'),
+      filename: filename,
+      path: path.resolve(__dirname, 'site'),
     },
     mode: 'production',
     watch: true,
@@ -64,7 +92,7 @@ module.exports = [
     },
     plugins: [
       new MiniCssExtractPlugin({
-        filename: '[name].css',
+        filename: filenameNoExt + '.css',
       }),
     ],
     module: {
@@ -102,7 +130,7 @@ module.exports = [
             {
               loader: 'file-loader',
               options: {
-                name: '[name].html',
+                name: filenameNoExt + '.html',
               },
             },
             'extract-loader',
@@ -128,12 +156,19 @@ module.exports = [
         },
       ],
     },
-  },
+  };
+};
+
+module.exports = [
+  createJSFileConfig('global.js'),
+  createJSFileConfig('index.js'),
+  createJSFileConfig('about.js'),
+  createJSFileConfig('tryit.js'),
   {
     entry: './src/serviceWorker/sw-compiled.js',
     output: {
       filename: 'service-worker.js',
-      path: path.resolve(__dirname, 'dist'),
+      path: path.resolve(__dirname, 'site'),
     },
     mode: 'production',
     watch: true,

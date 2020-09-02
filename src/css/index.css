@@ -1,93 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;500;700&display=swap');
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  color: #333;
-  text-decoration: none;
-}
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-}
-
-nav {
-  position: sticky;
-  top: 0;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  padding: 1.25rem 1.5rem;
-  text-align: center;
-  overflow: hidden;
-  background-color: #fff;
-  z-index: 9999;
+.container > * {
   flex-shrink: 0;
-  zoom: 80%;
-}
-nav > * {
-  display: inline-block;
-}
-nav .logo {
-  line-height: 2.5rem;
-  font-size: 2rem;
-  font-weight: bold;
-  float: left;
-}
-nav ul {
-  float: right;
-  font-size: 0;
-  height: 2.5rem;
-}
-nav ul a {
-  height: 2.5rem;
-  line-height: 2.25rem;
-  border: none;
-  outline: none;
-  background-color: transparent;
-  display: inline-block;
-  margin: 0 0.75rem;
-  padding: 0 0.25rem;
-  padding-bottom: 0.25rem;
-  text-decoration: none;
-  font-size: 1.15rem;
-  border-bottom: 2px solid transparent;
-  transition: border-color 0.2s, color 0.2s;
-  cursor: pointer;
-  color: #888;
-  user-select: none;
-}
-nav ul a:hover {
-  border-color: #ddd;
-}
-nav ul a.on {
-  border-color: #28f;
-  color: #28f;
 }
 
-.main {
-  width: 100%;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  height: auto;
-  flex-basis: 100%;
-}
-.container {
-  width: 1200px;
-  padding: 2rem 0;
-  padding-bottom: 0;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-@media only screen and (max-width: 1250px) {
-  .container {
-    width: 95%;
-  }
-}
 .container .meta,
 .container select {
   display: inline-block;
@@ -145,6 +59,7 @@ nav ul a.on {
 .container .row div p span label {
   user-select: none;
   margin-left: 0.35rem;
+  cursor: default;
 }
 
 .container .text-box {

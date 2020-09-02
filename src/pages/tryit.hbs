@@ -1,3 +1,33 @@
 {{#page "tryit"}}
-<p>tryit</p>
+<h1 class="page-title">Try it Yourself</h1>
+<div class="row">
+  <div>
+    <h1>Your Article Transcription</h1>
+    <p>Note: always include an empty line separating each paragraph</p>
+  </div>
+  <div>
+    <h1>Processed With My Program</h1>
+    <p>
+      <span></span>
+      <span>
+        <input type="checkbox" id="highlight" checked />
+        <label for="highlight">Highlight Fixes</label>
+      </span>
+    </p>
+  </div>
+</div>
+<div class="text-box highlighted">
+  <div class="left">
+    <textarea placeholder="Enter article transcription..." aria-label="Enter article transcription" spellcheck="false"></textarea>
+    <div class="button-container">
+      <button class="fix-article">Fix Article Extra Space Errors</button>
+    </div>
+  </div>
+  <div class="right">
+    <h1 class="loading">
+      <div class="icon"></div>
+      <p>Loading Algorithm and Dictionary</p>
+    </h1>
+  </div>
+</div>
 {{/page}}
