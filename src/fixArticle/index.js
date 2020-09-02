@@ -47,21 +47,25 @@ const fixArticle = (articleContent, options = {}) => {
   };
 
   const fixParagraph = (paragraphIdx) => {
+    const placeholderWord = '[] '; // to fix bugs with fixes in the first word
     const paragraph = articleContentParagraphs[paragraphIdx];
-    const { text, newWordIndices, originalWordIndices } = fixExtraSpaces(paragraph);
+    let { text, newWordIndices, originalWordIndices } = fixExtraSpaces(placeholderWord + paragraph);
 
-    const original = hasDelimiters
+    let original = hasDelimiters
       ? addDelimiters(paragraph, originalWordIndices, () => {
           originalChangedWordsCount++;
           return delimiterFunction(originalChangedWordsCount);
         })
       : paragraph;
-    const fixed = hasDelimiters
+    let fixed = hasDelimiters
       ? addDelimiters(text, newWordIndices, () => {
           fixedChangedWordsCount++;
           return delimiterFunction(fixedChangedWordsCount);
         })
       : text;
+
+    original = original.slice(3, original.length);
+    fixed = fixed.slice(3, fixed.length);
 
     paragraphCallback(original, fixed);
 
