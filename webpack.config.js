@@ -10,7 +10,12 @@ const handlebarsInput = {};
 Handlebars.registerHelper('page', function (page, block) {
   const pages = {
     index: 'Example Fixes from Famous Articles',
-    tryit: 'Try it Yourself',
+    tryit: 'Try It Yourself',
+    about: 'About',
+  };
+  const pagenames = {
+    index: 'Example Fixes',
+    tryit: 'Try It',
     about: 'About',
   };
 
@@ -31,7 +36,7 @@ Handlebars.registerHelper('page', function (page, block) {
       <meta charset="UTF-8" />
       <meta name="description" content="An automated tool that fixes extra-space errors in transcribed New York Times articles from the early 1970s." />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>NY Times 70s Transcription Fixes &bull; ${pages[page]}</title>
+      <title>${pagenames[page]} &bull; NY Times Transcription Fixes</title>
       <link rel="stylesheet" href="global.css?v=${modMS('site/global.css')}" />
       <link rel="stylesheet" href="${page}.css?v=${modMS('site/' + page + '.css')}" />
 
