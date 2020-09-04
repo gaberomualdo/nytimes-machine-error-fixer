@@ -45,13 +45,18 @@ The algorithm searches through each word in the article and assigns a numeric va
 For example, let's say we have the following text: 'Hello wor ld!'. 'Hello' has a high numeric value of 330,357, and combining 'Hello' with its adjacent 'wor' yields 'Hellowor', with a numeric value of -332,681. Since 'Hello' clearly has a higher numeric value than 'Hellowor', the algorithm considers this potential combination to not be optimal. Conversely, with 'wor' and 'ld', 'wor' has a numeric value of 301,358 and 'ld' has a numeric value of -332,681. 'world' has a numeric value of 332,569, which is greater than the numeric values of 'wor' and 'ld' combined. Thus, the algorithm determines that combining 'wor' and 'ld' to make 'world' is optimal.
 </p>
 <p>
-Note: you can try using the program at the <a href="tryit.html">try it yourself</a> page.
-</p>
-<p>
 The algorithm additionally uses a number of utility functions to remove irrelevant punctuation while processing the article, but add the punctuation back after it has made fixes, and also adds developer-friendly options to easily highlight or add code before and after fixed errors for example.
 </p>
+<h2>Use it Yourself</h2>
 <p>
-You can read the documentation and see the source code at <a href="">the GitHub repo</a>.
+You can the program out at the <a href="tryit.html">try it yourself</a> page.
+</p>
+<h3>For developers:</h3>
+<p>
+If you'd like to try fixing articles with this type of error automatically, go read the documentation at <a href="">the GitHub repo</a>. The source code is located at the GitHub repo as well.
+</p>
+<p>
+<strong>Interested in contributing to this project?</strong> Submit a pull request at <a href="">the GitHub repo</a>. If you find a bug, you can submit an issue at the repo as well.
 </p>
 <p>
 I hope you like this project! If you want to see more of my work and my personal blog about anything and everything programming, check out <a href="https://xtrp.io/">xtrp.io</a>.

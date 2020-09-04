@@ -13,7 +13,7 @@ Handlebars.registerHelper('page', function (page, block) {
     tryit: 'Try It Yourself',
     about: 'About',
   };
-  const pagenames = {
+  const pageNames = {
     index: 'Example Fixes',
     tryit: 'Try It',
     about: 'About',
@@ -36,7 +36,7 @@ Handlebars.registerHelper('page', function (page, block) {
       <meta charset="UTF-8" />
       <meta name="description" content="An automated tool that fixes extra-space errors in transcribed New York Times articles from the early 1970s." />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>${pagenames[page]} &bull; NY Times Transcription Fixes</title>
+      <title>${pageNames[page]} &bull; NY Times Article Transcription Fixer</title>
       <link rel="stylesheet" href="global.css?v=${modMS('site/global.css')}" />
       <link rel="stylesheet" href="${page}.css?v=${modMS('site/' + page + '.css')}" />
 
@@ -62,7 +62,7 @@ Handlebars.registerHelper('page', function (page, block) {
       <div class='nav-placeholder'></div>
       <nav>
         <div class='inner'>
-          <div class="logo"><a href="/">NY Times <span class="no-display-mobile">'70s</span> Transcription Fixes</a></div>
+          <div class="logo"><a href="/">NY Times <span class="no-display-mobile">Article</span> Transcription Fixer</a></div>
           <button class="mobile-link-toggle" onclick="document.querySelector('nav').classList.toggle('mobile-links-open')" aria-label="Toggle Menu">
             <svg class="open" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 6h-24v-4h24v4zm0 4h-24v4h24v-4zm0 8h-24v4h24v-4z"/></svg>
             <svg class="close" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"/></svg>
