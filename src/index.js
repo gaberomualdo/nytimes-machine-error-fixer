@@ -22,7 +22,7 @@ const updateArticle = () => {
 
     const metaHTML = `${withCommas(meta.wordCount)} words${separator}${meta.published}${separator}<a href='${
       meta.link
-    }' target='_blank' title='Article Link' rel="noreferrer noopener">See Original Article on NY Times</a>`;
+    }' target='_blank' title='Article Link' rel="noreferrer noopener">See Article on the NY Times Website</a>`;
 
     document.querySelector('.container .row div:first-child p').innerHTML = metaHTML;
 
