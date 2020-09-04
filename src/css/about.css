@@ -1,5 +1,14 @@
+.main {
+  overflow-y: auto;
+}
+
 .container {
   align-items: flex-start;
+}
+@media only screen and (max-width: 1250px) {
+  .container {
+    padding: 0 0.75rem;
+  }
 }
 .container img {
   max-width: 100%;
@@ -15,8 +24,11 @@
   font-size: 1rem;
   font-family: 'Georgia', 'Times New Roman', Times, serif;
 }
-.container *:not(:last-child) {
+.container * {
   margin-bottom: 1.5rem;
+}
+.container *:first-child {
+  margin-top: 2rem;
 }
 
 .container a {
