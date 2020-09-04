@@ -31,7 +31,6 @@ fixArticleBtn.addEventListener('click', () => {
     paragraphCallback: (original, fixed) => {
       const newParagraph = document.createElement('p');
       newParagraph.innerHTML = fixed;
-      console.log(fixed);
       fixedCount += Array.from(newParagraph.querySelectorAll('strong')).length;
       outputArea.appendChild(newParagraph);
 
