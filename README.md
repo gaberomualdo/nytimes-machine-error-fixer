@@ -2,7 +2,7 @@
 
 Fixes end-of-line hyphenation being misinterpreted as the space character in transcribed archived NY Times articles.
 
-This is a very common issue that occurs thousands of times in hundreds of transcribed NY Times articles, particularly in the 1970s. You might see several words in an older transcribed article have spaces in the middle, like: 'Gover nment' instead of 'Government'. In fact, the issue is in several famous articles, including the article which began the NYT release of the Pentagon Papers, the NY Times article about Apollo 14, and more.
+This is a very common issue that I've noticed in several prominent transcribed NY Times articles, particularly from the 1970s. You might see several words in an older transcribed article have spaces in the middle, like: 'Gover nment' instead of 'Government'. In fact, the issue is in several famous articles, including the article which began the NYT release of the Pentagon Papers, the NY Times article about Apollo 14, and more.
 
 **For more information, check out the [official website and demo](https://nytimesfixer.now.sh).**
 
