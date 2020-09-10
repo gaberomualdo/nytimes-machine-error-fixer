@@ -2,17 +2,17 @@
 <h1>About</h1>
 <h2>Background</h2>
 <p>
-Back in May, I was working on a school project about <a href="https://en.wikipedia.org/wiki/Pentagon_Papers">the Pentagon Papers</a>.
+Back in May, I was working on a school project about <a href="https://en.wikipedia.org/wiki/Pentagon_Papers" rel="noreferrer noopener" target="_blank">the Pentagon Papers</a>.
 </p>
 <p>
   The Pentagon Papers was a government paper including thousands of pages of classified documents about the Vietnam war. <em>The New York Times</em> and <em>the Washington Post</em> released the Papers in the form of several key articles in June 1971. After publishing only three articles about the Papers, the NY Times received an injunction from Former U.S. Attorney General Mitchell. The Washington Post received a similar injunction, and decided to file a joint lawsuit with the NY Times requesting permission to continue publishing. The case went to the U.S. Supreme Court and the newspapers had a 6–3 victory and were able to continue publishing.
 </p>
 <p>
-  As part of my school research into the Papers, I read several of the 1971 articles about the subject published in the NY Times. The Times has luckily created a great system for accessing older articles, <a href="http://timesmachine.nytimes.com/">the TimesMachine</a>, which includes hundreds of transcribed articles from physical newspapers.
+  As part of my school research into the Papers, I read several of the 1971 articles about the subject published in the NY Times. The Times has luckily created a great system for accessing older articles, <a rel="noreferrer noopener" target="_blank" href="http://timesmachine.nytimes.com/">the TimesMachine</a>, which includes hundreds of transcribed articles from physical newspapers.
 </p>
 <h2>The Problem</h2>
 <p>
-The first front-page article released by the NY Times which began the release of the Pentagon Papers was <em><a href="https://www.nytimes.com/1971/06/13/archives/vietnam-archive-pentagon-study-traces-3-decades-of-growing-u-s.html">Vietnam Archive: Pentagon Study Traces 3 Decades of Growing U. S. Involvement</a></em>.
+The first front-page article released by the NY Times which began the release of the Pentagon Papers was <em><a rel="noreferrer noopener" target="_blank" href="https://www.nytimes.com/1971/06/13/archives/vietnam-archive-pentagon-study-traces-3-decades-of-growing-u-s.html">Vietnam Archive: Pentagon Study Traces 3 Decades of Growing U. S. Involvement</a></em>.
 </p>
 <p>
 Let's take a look at the first paragraph of that article on the NY Times website. As you are reading, you may notice several errors with extra spaces right in the middle of words. These errors have been highlighted on the right column.
@@ -29,18 +29,18 @@ Personally, while quoting NY Times articles in a school essay, I had to manually
 </p>
 <h2>My Program: a Simple, Effective Solution</h2>
 <p>
-This site showcases a program I've built to fix this issue. The program is written in plain JavaScript, and documentation can be found at <a href="">the GitHub repo</a>. Given easy access to Node.js or a web browser, it would be very straightforward to automatically fix articles in the 1970s period with the program. In fact, <strong>fixing a single article using the program only requires two lines of code</strong>.
+This site showcases a program I've built to fix this issue. The program is written in plain JavaScript, and documentation can be found at <a href="https://github.com/xtrp/nytimesfixer">the GitHub repo</a>. Given easy access to Node.js or a web browser, it would be very straightforward to automatically fix articles in the 1970s period with the program. In fact, <strong>fixing a single article using the program only requires two lines of code</strong>.
 </p>
 <p>Here's a screenshot of the program in action in the <a href="index.html">examples page</a>:</p>
 <div class="image-area">
   <img src="examplefix.png" alt="Example Fix">
 </div>
 <p>
-You can go check out <a href="index.html">example fixes</a> from six famous NY Times articles, processed with the program. You can also <a href="tryit.html">try it out</a> yourself.
+You can go check out <a href="index.html">example fixes</a> from six famous NY Times articles, processed with the program. You can also <a href="tryit.html">try it</a> yourself.
 </p>
 <h2>How It Works</h2>
 <p>
-The foundation of the algorithm used in the program is use of a 300,000+ word dictionary, ordered by how common a given word is. Dictionary data was accessed with <a href="https://books.google.com/ngrams">Google's Ngram Viewer</a>, compiled by the Google Books team, which has <a href="https://www.nytimes.com/2015/10/29/arts/international/google-books-a-complex-and-controversial-experiment.html">reportedly</a> scanned through more than 25 million books.
+The foundation of the algorithm used in the program is use of a 300,000+ word dictionary, ordered by how common a given word is. Dictionary data was accessed with <a rel="noreferrer noopener" target="_blank" href="https://books.google.com/ngrams">Google's Ngram Viewer</a>, compiled by the Google Books team, which has <a rel="noreferrer noopener" target="_blank" href="https://www.nytimes.com/2015/10/29/arts/international/google-books-a-complex-and-controversial-experiment.html">reportedly</a> scanned through more than 25 million books.
 </p>
 <p>
 The algorithm searches through each word in the article and assigns a numeric value to represent how common the word is. Unrecognized words are given a negative numeric value. It then checks if combining the word with an adjacent word would improve the numeric value of the word.
@@ -53,17 +53,17 @@ The algorithm additionally uses a number of utility functions to remove irreleva
 </p>
 <h2>Use it Yourself</h2>
 <p>
-Try the program out at the <a href="tryit.html">try it yourself</a> page.
+Try the program out at the <a href="tryit.html">Try It Yourself</a> page.
 </p>
 <h3>For developers:</h3>
 <p>
-If you'd like to try fixing articles with this type of error automatically, go read the documentation at <a href="https://github.com/xtrp/nytimes-fixer">the GitHub repo</a>. The source code is located at the GitHub repo as well.
+If you'd like to try fixing articles with this type of error automatically, go read the documentation at <a rel="noreferrer noopener" target="_blank" href="https://github.com/xtrp/nytimesfixer">the GitHub repo</a>. The source code is located at the GitHub repo as well.
 </p>
 <p>
 <strong>Interested in contributing to this project?</strong> Submit a pull request at the GitHub repo. If you find a bug, you can submit an issue at the repo as well.
 </p>
 <p>
-I hope you like this project! If you want to see more of my work and my personal blog about anything and everything programming, check out <a href="https://xtrp.io/">xtrp.io</a>.
+I hope you like this project! If you want to see more of my work and my personal blog about anything and everything programming, check out <a rel="noreferrer noopener" target="_blank" href="https://xtrp.io/">xtrp.io</a>.
 </p>
 <p>
 <em>&mdash; Gabriel Romualdo, September 2020</em>

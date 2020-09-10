@@ -8,35 +8,27 @@ This is a very common issue that occurs thousands of times in hundreds of transc
 
 ## Using the Program Yourself
 
-If you'd just like to try out the program, check out the [Try It Yourself page on the site](https://nytimesfixer.now.sh/tryit.html).
+If you'd just like to try out the program, check out the [Try It Yourself](https://nytimesfixer.now.sh/tryit.html) page on the official site.
 
 If you'd like to manually use the program in a JavaScript or Node.js project, follow these instructions:
 
- 1. Clone or Download the GitHub repo:
+ 1. **Clone or Download the GitHub repo:**
 
 ```
 git clone https://github.com/xtrp/nytimes-fixer
 ```
 
- 2. Import or require the `fixArticle` index file
+ 2. **Import or require the `fixArticle` index file**
 
-To use the program, you'll be using the `fixArticle` function. To get access to this function, import or require the `fixArticle` index file:
-
-```javascript
-require('./path/to/nytimes-fixer/src/fixArticle/');
-```
-
-or 
+To use the program, you'll be using the `fixArticle` function. To get access to this function, require the `fixArticle` index file like so:
 
 ```javascript
-import './path/to/nytimes-fixer/src/fixArticle/';
+const fixArticle = require('./path/to/nytimes-fixer/src/fixArticle/');
 ```
 
- 3. Use the `fixArticle` function to fix errors in articles
+ 3. **Use the function to fix errors in articles**
 
-After following step 2, the `fixArticle` should be present in the global variables of your site or Node.js project.
-
-`fixArticle` has the following format: **`fixArticle(articleText, [options])`**.
+The exported `fixArticle` function has the following format: **`fixArticle(articleText, [options])`**.
 
 Paragraphs within article text should have **one empty line between each paragraph**, or `\n\n` after each paragraph.
 
@@ -60,6 +52,28 @@ If ```delimiterFunction``` is set to `'default'`, the default delimiter used on 
 
  - `async` (`boolean`): whether the function should run asynchronously or not. Commonly used with `paragraphCallback`.
  - `paragraphCallback(originalParagraph, fixedParagraph)` (`Function`): if specified, this function is called after the program has finished processing each paragraph. Typically used with `async`. The purpose of this is to increase speed when processing in real-time. If you are processing a very long article (ex: 30,000 words), results can take a while, and specifying a `paragraphCallback` will provide real-time results.
+
+### Example Usage
+
+Below is an example of how the program can be used to fix an article asynchronously with added delimiters.
+
+```javascript
+const fixArticle = require('./fixArticle');
+
+fixArticle('article content here.....', {
+  delimiterFunction: (errorIndex) => {
+    return {
+      start: "<<",
+      end: ">>"
+    } // errors will now look like: "Hello <<world>>!"
+  },
+  async: true, // function will not return anything
+  paragraphCallback: (originalParagraphContent, fixedParagraphContent) => {
+    console.log("Was: " + originalParagraphContent);
+    console.log("Now: " + fixedParagraphContent);
+  } // log paragraph content as it comes, not once all the paragraphs are finished being fixed
+});
+```
 
 ## Contributing
 
